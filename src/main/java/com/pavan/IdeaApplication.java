@@ -8,7 +8,8 @@ public class IdeaApplication {
 
 	public static void main(String[] args) {
 		
-//		http://localhost:2022/
+		// Run On
+        // http://localhost:2022/
 		
 		SpringApplication.run(IdeaApplication.class, args);
 		System.out.println("STARTED!!!!!!!!!!!");
