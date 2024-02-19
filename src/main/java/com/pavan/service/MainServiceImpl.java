@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.pavan.dao.MainDao;
 import com.pavan.dto.Invest;
 import com.pavan.dto.Posts;
+import com.pavan.dto.Response;
+import com.pavan.dto.Result;
 import com.pavan.dto.Users;
 
 @Service
@@ -51,5 +53,29 @@ public class MainServiceImpl implements MainService {
 		List<Invest> list = mainDao.selectAllInvests();
 		return list;
 	}
+	
+	@Override
+	public String postIdea(Response idea){
+		System.out.println("service");
+		String status = mainDao.ideaSave(idea);
+		return status;
+	}
+	
+	@Override
+	public List<Response> getAllIdeas(){
+		List<Response> list = mainDao.selectAllIdeas();
+		return list;
+	}
 
+	@Override
+	public String postResult(Result result) {
+		String status = mainDao.resultSave(result);
+		return status;
+	}
+	
+	@Override
+	public List<Result> getAllResults(){
+		List<Result> list = mainDao.selectAllResults();
+		return list;
+	}
 }

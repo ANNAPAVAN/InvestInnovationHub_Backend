@@ -51,6 +51,7 @@ public class MainController {
 	            response.put("role", "student");
 //	            response.put("posts", allPosts);
 	        } else if ("entrepreneur".equals(user.getRole())) {
+	        	response.put("id",user.getId());
 	            response.put("role", "entrepreneur");
 	        } else if ("investor".equals(user.getRole())) {
 //	            List<Invest> allInvest = mainService.getAllInvests();
@@ -97,6 +98,7 @@ public class MainController {
 	@GetMapping("/getPosts")
 	@ResponseBody 
 	public Map<String, Object> getPost(){
+		System.out.println("getting posts to student");
 	    Map<String, Object> response = new HashMap<>();
 	    List<Posts> allPosts = mainService.getAllPosts();
 	    response.put("role", "student");
@@ -114,6 +116,50 @@ public class MainController {
 		return response;
 	}
 	
+	@PostMapping("/studentsend")
+	@ResponseBody
+	public Map<String,Object> studentSend(@RequestBody Response idea){
+		Map<String,Object> response = new HashMap<>();
+	    System.out.println("controller");
+		String status = mainService.postIdea(idea);
 
+	    response.put("status", status);
+	    
+		return response;
+	}
+	
+	
+	@GetMapping("/getIdeas")
+	@ResponseBody
+	public Map<String,Object> getIdea(){
+		Map<String,Object> response = new HashMap<>();
+		List<Response> res = mainService.getAllIdeas();
+		response.put("ideas", res);
+		
+		return response;
+	}
+	
+	
+	@PostMapping("/postresult")
+	@ResponseBody
+	public Map<String,Object> PostResult(@RequestBody Result result){
+		Map<String,Object> response = new HashMap<>();
+		String status = mainService.postResult(result);
+
+	    response.put("status", status);
+	    
+		return response;
+	}
+	
+	
+	@GetMapping("/getResults")
+	@ResponseBody
+	public Map<String,Object> getResult(){
+		Map<String,Object> response = new HashMap<>();
+		List<Result> res = mainService.getAllResults();
+		response.put("results", res);
+		
+		return response;
+	}
 
 }

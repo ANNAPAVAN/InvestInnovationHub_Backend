@@ -5,6 +5,8 @@ import java.util.List;
 import com.pavan.dto.Invest;
 import com.pavan.dto.Posts;
 import com.pavan.dto.Users;
+import com.pavan.dto.Response;
+import com.pavan.dto.Result;
 
 public interface MainService {
 	public String register(Users user);
@@ -13,4 +15,8 @@ public interface MainService {
 	public List<Posts> getAllPosts();
 	public String pushInvest(Invest inv);
 	public List<Invest> getAllInvests();
+	public String postIdea(Response idea);
+	public List<Response> getAllIdeas();
+	public String postResult(Result result);
+	public List<Result> getAllResults();
 }

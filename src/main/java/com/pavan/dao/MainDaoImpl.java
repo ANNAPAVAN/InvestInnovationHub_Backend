@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.pavan.mapper.*;
 import com.pavan.dto.Invest;
 import com.pavan.dto.Posts;
+import com.pavan.dto.Response;
+import com.pavan.dto.Result;
 import com.pavan.dto.Users;
 
 @Repository 
@@ -101,5 +103,48 @@ public class MainDaoImpl implements MainDao {
 		String query1 = "select * from inv_requests";
 		List<Invest> invList = jdbcTemplate.query(query1,new InvestsRowMapper());
 		return invList;
+	}
+	
+	@Override
+	public String ideaSave(Response res) {
+		System.out.println("dao");
+		String status = "";
+		int rC = jdbcTemplate.update("insert into studentresponse (std_id,e_id,p_id,p_title,idea) values('"+res.getStudent_id()+"','"+res.getEnt_id()+"','"+res.getP_id()+"','"+res.getP_title()+"','"+res.getIdea()+"')");
+		if(rC==1) {
+			status="success";
+		}else {
+			status="failure";
+		}
+		return status;
+	}
+	
+	@Override
+	public List<Response> selectAllIdeas(){
+		
+	    List<Response> ideas = jdbcTemplate.query("SELECT * FROM studentresponse", new IdeaMapper());
+
+		return ideas;
+	}
+	
+	@Override
+	public String resultSave(Result res){
+		String status = "";
+		int rC = jdbcTemplate.update("insert into result values('"+res.getStd_id()+"','"+res.getEnt_id()+"','"+res.getInv_id()+"','"+res.getProj_id()+"','"+res.getProj_title()+"','"+res.getAmount()+"')");
+		int d1 = jdbcTemplate.update("delete from posts where p_id = '"+res.getProj_id()+"'");
+		int d2 = jdbcTemplate.update("delete from studentresponse where p_id = '"+res.getProj_id()+"'");
+		int d3 = jdbcTemplate.update("delete from inv_requests where p_id = '"+res.getProj_id()+"'");
+		if(rC==1) {
+			status="success";
+		}else {
+			status="failure";
+		}
+		return status;
+	}
+	
+	@Override
+	public List<Result> selectAllResults(){
+		List<Result> results = jdbcTemplate.query("select * from result", new ResultMapper());
+		
+		return results;
 	}
 }
