@@ -17,7 +17,7 @@ public interface MainDao {
 	public String invest(Invest inv);
 	public List<Invest> selectAllInvests();
 	public String ideaSave(Response res);
-	public List<Response> selectAllIdeas();
+	public List<Response> selectAllIdeas(String id);
 	public String resultSave(Result res);
 	public List<Result> selectAllResults();
 	

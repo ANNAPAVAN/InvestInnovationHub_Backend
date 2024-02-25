@@ -16,7 +16,7 @@ public interface MainService {
 	public String pushInvest(Invest inv);
 	public List<Invest> getAllInvests();
 	public String postIdea(Response idea);
-	public List<Response> getAllIdeas();
+	public List<Response> getAllIdeas(String id);
 	public String postResult(Result result);
 	public List<Result> getAllResults();
 }

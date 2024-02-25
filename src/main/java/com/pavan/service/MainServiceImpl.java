@@ -62,8 +62,8 @@ public class MainServiceImpl implements MainService {
 	}
 	
 	@Override
-	public List<Response> getAllIdeas(){
-		List<Response> list = mainDao.selectAllIdeas();
+	public List<Response> getAllIdeas(String id){
+		List<Response> list = mainDao.selectAllIdeas(id);
 		return list;
 	}
 

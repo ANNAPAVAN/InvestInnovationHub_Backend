@@ -119,9 +119,9 @@ public class MainDaoImpl implements MainDao {
 	}
 	
 	@Override
-	public List<Response> selectAllIdeas(){
+	public List<Response> selectAllIdeas(String id){
 		
-	    List<Response> ideas = jdbcTemplate.query("SELECT * FROM studentresponse", new IdeaMapper());
+	    List<Response> ideas = jdbcTemplate.query("SELECT * FROM studentresponse where e_id = '"+id+"'", new IdeaMapper());
 
 		return ideas;
 	}

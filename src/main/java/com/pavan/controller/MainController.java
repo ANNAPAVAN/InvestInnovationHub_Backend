@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 import com.pavan.dto.*;
 import com.pavan.service.MainService;
@@ -98,7 +100,7 @@ public class MainController {
 	@GetMapping("/getPosts")
 	@ResponseBody 
 	public Map<String, Object> getPost(){
-		System.out.println("getting posts to student");
+//		System.out.println("getting posts to student");
 	    Map<String, Object> response = new HashMap<>();
 	    List<Posts> allPosts = mainService.getAllPosts();
 	    response.put("role", "student");
@@ -128,15 +130,25 @@ public class MainController {
 		return response;
 	}
 	
+//	
+//	@GetMapping("/getIdeas")
+//	@ResponseBody
+//	public Map<String,Object> getIdea(){
+//		Map<String,Object> response = new HashMap<>();
+//		List<Response> res = mainService.getAllIdeas();
+//		response.put("ideas", res);
+//		
+//		return response;
+//	}
+	
 	
 	@GetMapping("/getIdeas")
 	@ResponseBody
-	public Map<String,Object> getIdea(){
-		Map<String,Object> response = new HashMap<>();
-		List<Response> res = mainService.getAllIdeas();
-		response.put("ideas", res);
-		
-		return response;
+	public Map<String, Object> getIdeas(@RequestParam String entId) {
+	    Map<String, Object> response = new HashMap<>();
+	    List<Response> res = mainService.getAllIdeas(entId); // Assuming you have a method to fetch ideas by entrepreneur ID
+	    response.put("ideas", res);
+	    return response;
 	}
 	
 	
