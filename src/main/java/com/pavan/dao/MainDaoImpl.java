@@ -147,4 +147,22 @@ public class MainDaoImpl implements MainDao {
 		
 		return results;
 	}
+	
+	@Override 
+	public List<Users> selectAllStudents(){
+		List<Users> students = jdbcTemplate.query("select * from users where role='student'", new UserRowMapper());
+		return students;
+	}
+	
+	@Override
+	public List<Users> selectAllEntrepreneurs(){
+		List<Users> entrepreneurs = jdbcTemplate.query("select * from users where role='entrepreneur'", new UserRowMapper());
+		return entrepreneurs;
+	}
+	
+	@Override
+	public List<Users> selectAllInvestors(){
+		List<Users> investors = jdbcTemplate.query("select * from users where role='investor'", new UserRowMapper());
+		return investors;
+	}
 }

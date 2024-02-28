@@ -19,4 +19,7 @@ public interface MainService {
 	public List<Response> getAllIdeas(String id);
 	public String postResult(Result result);
 	public List<Result> getAllResults();
+	public List<Users> getAllStudents();
+	public List<Users> getAllEntrepreneurs();
+	public List<Users> getAllInvestors();
 }

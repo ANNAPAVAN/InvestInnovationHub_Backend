@@ -130,23 +130,13 @@ public class MainController {
 		return response;
 	}
 	
-//	
-//	@GetMapping("/getIdeas")
-//	@ResponseBody
-//	public Map<String,Object> getIdea(){
-//		Map<String,Object> response = new HashMap<>();
-//		List<Response> res = mainService.getAllIdeas();
-//		response.put("ideas", res);
-//		
-//		return response;
-//	}
-	
+
 	
 	@GetMapping("/getIdeas")
 	@ResponseBody
 	public Map<String, Object> getIdeas(@RequestParam String entId) {
 	    Map<String, Object> response = new HashMap<>();
-	    List<Response> res = mainService.getAllIdeas(entId); // Assuming you have a method to fetch ideas by entrepreneur ID
+	    List<Response> res = mainService.getAllIdeas(entId); 
 	    response.put("ideas", res);
 	    return response;
 	}
@@ -173,5 +163,34 @@ public class MainController {
 		
 		return response;
 	}
+	
+	@GetMapping("/getStudents")
+	@ResponseBody 
+	public Map<String,Object> getStudents(){ 
+		Map<String,Object> response = new HashMap<>();
+		List<Users> res = mainService.getAllStudents();
+		response.put("students", res);
+		
+		return response;
+	}
+	
+	@GetMapping("/getEntrepreneurs")
+	@ResponseBody 
+	public Map<String,Object> getEntrepreneurs(){
+		Map<String,Object> response = new HashMap<>();
+		List<Users> res = mainService.getAllEntrepreneurs();
+		response.put("entrepreneurs", res);
+		
+		return response;
+	}
 
+	@GetMapping("/getInvestors")
+	@ResponseBody 
+	public Map<String,Object> getInvestors(){ 
+		Map<String,Object> response = new HashMap<>();
+		List<Users> res = mainService.getAllInvestors();
+		response.put("investors", res);
+		
+		return response;
+	}
 }

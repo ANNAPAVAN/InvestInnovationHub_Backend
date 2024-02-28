@@ -20,5 +20,8 @@ public interface MainDao {
 	public List<Response> selectAllIdeas(String id);
 	public String resultSave(Result res);
 	public List<Result> selectAllResults();
+	public List<Users> selectAllStudents();
+	public List<Users> selectAllEntrepreneurs();
+	public List<Users> selectAllInvestors();
 	
 }

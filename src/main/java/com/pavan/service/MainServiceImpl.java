@@ -78,4 +78,22 @@ public class MainServiceImpl implements MainService {
 		List<Result> list = mainDao.selectAllResults();
 		return list;
 	}
+	
+	@Override
+	public List<Users> getAllStudents(){
+		List<Users> list = mainDao.selectAllStudents();
+		return list;
+	}
+	
+	@Override
+	public List<Users> getAllEntrepreneurs(){
+		List<Users> list = mainDao.selectAllEntrepreneurs();
+		return list;
+	}
+	
+	@Override
+	public List<Users> getAllInvestors(){
+		List<Users> list = mainDao.selectAllInvestors();
+		return list;
+	}
 }
