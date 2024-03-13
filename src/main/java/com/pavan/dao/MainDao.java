@@ -23,5 +23,8 @@ public interface MainDao {
 	public List<Users> selectAllStudents();
 	public List<Users> selectAllEntrepreneurs();
 	public List<Users> selectAllInvestors();
+	public List<Users> getProfile(String uid);
+	public String updateProfile(Users user);
+	public String deleteUser(String uid);
 	
 }

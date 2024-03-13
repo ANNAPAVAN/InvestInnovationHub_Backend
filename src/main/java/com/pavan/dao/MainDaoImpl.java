@@ -19,12 +19,13 @@ public class MainDaoImpl implements MainDao {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
+
 	@Override
 	public String registerUser(Users user) {
 		String status = "";
 		Users usr = search(user.getId());
 		if(usr==null) {
-			int rowCount = jdbcTemplate.update("insert into users values('"+user.getId()+"','"+user.getName()+"','"+user.getEmail()+"','"+user.getPwd()+"','"+user.getRole()+"')");
+			int rowCount = jdbcTemplate.update("insert into users values('"+user.getId()+"','"+user.getName()+"','"+user.getEmail()+"','"+user.getPwd()+"','"+user.getRole()+"','"+user.getImage()+"')");
 			if(rowCount==1) {
 				status = "success";
 			}else {
@@ -35,6 +36,9 @@ public class MainDaoImpl implements MainDao {
 		}
 		return status;
 	}
+	
+
+	
 	
 	@Override
 	public Users search(String id) {
@@ -65,6 +69,8 @@ public class MainDaoImpl implements MainDao {
 		}
 		return status;
 	}
+	
+
 	
 	@Override
 	public String postProject(Posts post) {
@@ -165,4 +171,37 @@ public class MainDaoImpl implements MainDao {
 		List<Users> investors = jdbcTemplate.query("select * from users where role='investor'", new UserRowMapper());
 		return investors;
 	}
+	
+	@Override
+	public List<Users> getProfile(String uid){
+		List<Users> investors = jdbcTemplate.query("select * from users where id='"+uid+"'", new UserRowMapper());
+		return investors;
+	}
+	
+	@Override
+	public String updateProfile(Users user) {
+		String status = "";
+		int rowCount = jdbcTemplate.update("UPDATE users SET name = ?, email = ?, password = ?, image = ? WHERE id = ?",user.getName(), user.getEmail(),user.getPwd(), user.getImage(), user.getId());
+
+		if(rowCount==1) {
+			status = "success";
+		}else {
+			status="failure";
+		}
+		return status;
+	}
+	
+	@Override
+	public String deleteUser(String uid) {
+		String status ="";
+		int rC = jdbcTemplate.update("delete from users where id = ?",uid);
+		if(rC==1){
+			status="success";
+		}else {
+			status = "failure";
+		}
+		
+		return status;
+	}
+	
 }

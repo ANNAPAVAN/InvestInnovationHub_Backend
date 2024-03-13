@@ -96,4 +96,22 @@ public class MainServiceImpl implements MainService {
 		List<Users> list = mainDao.selectAllInvestors();
 		return list;
 	}
+	
+	@Override
+	public List<Users> getOne(String uid){
+		List<Users> list = mainDao.getProfile(uid);
+		return list;
+	}
+	
+	@Override
+	public String updateUser(Users user) {
+		String status = mainDao.updateProfile(user);
+		return status;
+	}
+	
+	@Override 
+	public String deleteMe(String uid){
+		String status = mainDao.deleteUser(uid);
+		return status;
+	}
 }

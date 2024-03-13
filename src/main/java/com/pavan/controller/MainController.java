@@ -36,7 +36,7 @@ public class MainController {
 	    return response;
 	}
 
-//  REACT ADDED
+//  REACT ADDED    
 	
 	@PostMapping("/login")
 	@ResponseBody
@@ -50,6 +50,7 @@ public class MainController {
 	        // Depending on the user role, you may want to include additional information
 	        if ("student".equals(user.getRole())) {
 //	            List<Posts> allPosts = mainService.getAllPosts();
+	        	response.put("id",user.getId());
 	            response.put("role", "student");
 //	            response.put("posts", allPosts);
 	        } else if ("entrepreneur".equals(user.getRole())) {
@@ -57,6 +58,7 @@ public class MainController {
 	            response.put("role", "entrepreneur");
 	        } else if ("investor".equals(user.getRole())) {
 //	            List<Invest> allInvest = mainService.getAllInvests();
+	        	response.put("id",user.getId());
 	            response.put("role", "investor");
 //	            response.put("invests", allInvest);
 	        }
@@ -193,4 +195,40 @@ public class MainController {
 		
 		return response;
 	}
+	
+	
+	@GetMapping("/getUser")
+	@ResponseBody
+	public Map<String, Object> getUser(@RequestParam String uid) {
+	    Map<String, Object> response = new HashMap<>();
+	    List<Users> res = mainService.getOne(uid); 
+	    response.put("profile", res);
+	    return response;
+	}
+	
+	@PostMapping("/updateProfile")
+	@ResponseBody 
+	public Map<String, String> userProfile(@RequestBody Users user) {
+	 
+	    String status = mainService.updateUser(user);
+
+	    Map<String, String> response = new HashMap<>();
+	    response.put("status", status);
+
+	    return response;
+	}
+	
+	@PostMapping("/deleteUser")
+	@ResponseBody 
+	public Map<String, String> deleteUser(@RequestParam String uid){
+		String status = mainService.deleteMe(uid);
+		
+		 Map<String, String> response = new HashMap<>();
+		 response.put("status", status);
+
+		 return response;
+	}
+	
+	
 }
+

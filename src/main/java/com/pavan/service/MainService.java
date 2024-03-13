@@ -22,4 +22,7 @@ public interface MainService {
 	public List<Users> getAllStudents();
 	public List<Users> getAllEntrepreneurs();
 	public List<Users> getAllInvestors();
+	public List<Users> getOne(String uid);
+	public String updateUser(Users user);
+	public String deleteMe(String uid);
 }

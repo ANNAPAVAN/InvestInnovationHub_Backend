@@ -6,7 +6,14 @@ public class Users {
 	private String email;
 	private String pwd;
 	private String role;
+	private String image;
 	
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
 	public String getId() {
 		return id;
 	}
